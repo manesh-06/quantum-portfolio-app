@@ -1,0 +1,44 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ios-app/**"
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios-app
+        run: xcodegen generate
+
+      - name: Build unsigned .app (for Sideloadly to resign)
+        working-directory: ios-app
+        run: |
+          xcodebuild -project PortfolioApp.xcodeproj \
+            -scheme PortfolioApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Package as IPA
+        working-directory: ios-app
+        run: |
+          mkdir -p Payload
+          cp -r build/Build/Products/Release-iphoneos/PortfolioApp.app Payload/
+          zip -r PortfolioApp.ipa Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PortfolioApp-ipa
+          path: ios-app/PortfolioApp.ipa

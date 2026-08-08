@@ -1,0 +1,24 @@
+name: PortfolioApp
+options:
+  bundleIdPrefix: com.maneshram
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  PortfolioApp:
+    type: application
+    platform: iOS
+    sources:
+      - Sources/PortfolioApp
+    info:
+      path: Sources/PortfolioApp/Info.plist
+      properties:
+        UILaunchScreen: {}
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.maneshram.portfolioapp
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
