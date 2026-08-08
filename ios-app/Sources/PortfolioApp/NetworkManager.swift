@@ -3,7 +3,7 @@ import Foundation
 final class NetworkManager {
     // Point this at your laptop's local IP while backend runs there,
     // e.g. "http://192.168.1.23:8000". Change per network / USB-tether IP.
-    static var baseURL = "http://192.168.1.23:8000"
+    static var baseURL = "https://basket-superhero-uncooked.ngrok-free.dev"
 
     static func optimize(
         tickers: [String],
