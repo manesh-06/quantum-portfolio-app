@@ -1,4 +1,4 @@
-# Quantum-Classical Hybrid Portfolio Engine — iOS App
+# Quantum-Classical Hybrid Portfolio Engine 
 
 Turns the IIIT-Nagpur internship engine (Harris Hawks + Qiskit quantum-random
 search + FinBERT sentiment guardrail + Finnhub live data) into a real app on
